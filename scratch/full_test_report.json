@@ -1,0 +1,405 @@
+[
+  {
+    "name": "Register User",
+    "method": "POST",
+    "url": "http://localhost:3000/auth/register",
+    "requestBody": {
+      "email": "user_full_test@example.com",
+      "password": "password123"
+    },
+    "status": 201,
+    "duration": "169ms",
+    "response": {
+      "id": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+      "email": "user_full_test@example.com",
+      "password": "$2b$10$s3NpM1sW2C4wTqxnzywivOL3R6ADk.onT2weGum.jVoI1L9QaGSjW",
+      "role": "USER"
+    }
+  },
+  {
+    "name": "Login User",
+    "method": "POST",
+    "url": "http://localhost:3000/auth/login",
+    "requestBody": {
+      "email": "user_full_test@example.com",
+      "password": "password123"
+    },
+    "status": 200,
+    "duration": "70ms",
+    "response": {
+      "user": {
+        "id": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+        "email": "user_full_test@example.com",
+        "password": "$2b$10$s3NpM1sW2C4wTqxnzywivOL3R6ADk.onT2weGum.jVoI1L9QaGSjW",
+        "role": "USER"
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyZGE0ODFhLWVkZGQtNDkwYi05NDA1LTJjMWFhNzE1NDZmOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzc2NzA1MDcyLCJleHAiOjE3NzczMDk4NzJ9.2-NJSERYXaocziKNlpc9EPG5c84yDu17dxIY17VtdEA"
+    }
+  },
+  {
+    "name": "Get Profile",
+    "method": "GET",
+    "url": "http://localhost:3000/users/me",
+    "requestBody": null,
+    "status": 200,
+    "duration": "7ms",
+    "response": {
+      "id": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+      "email": "user_full_test@example.com",
+      "role": "USER"
+    }
+  },
+  {
+    "name": "Create Property",
+    "method": "POST",
+    "url": "http://localhost:3000/properties",
+    "requestBody": {
+      "title": "Full Test Villa",
+      "description": "Testing all endpoints",
+      "price": 9999,
+      "type": "Villa",
+      "area": 500,
+      "address": "Test St",
+      "lat": 10,
+      "lng": 106
+    },
+    "status": 201,
+    "duration": "9ms",
+    "response": {
+      "id": "bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+      "title": "Full Test Villa",
+      "description": "Testing all endpoints",
+      "price": 9999,
+      "type": "Villa",
+      "area": 500,
+      "address": "Test St",
+      "lat": 10,
+      "lng": 106,
+      "status": "PENDING",
+      "rejectReason": null,
+      "expiredAt": null,
+      "userId": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+      "createdAt": "2026-04-20T17:11:12.763Z"
+    }
+  },
+  {
+    "name": "Get Public Properties",
+    "method": "GET",
+    "url": "http://localhost:3000/properties",
+    "status": 200,
+    "duration": "11ms",
+    "response": [
+      {
+        "id": "6c24cdb0-568e-4bac-9af4-eab4833e53e2",
+        "title": "Admin Test Property",
+        "description": "Waiting for approval",
+        "price": 5000,
+        "type": "Villa",
+        "area": 200,
+        "address": "Ocean Road",
+        "lat": 10.5,
+        "lng": 107.1,
+        "status": "APPROVED",
+        "rejectReason": null,
+        "expiredAt": null,
+        "userId": "c9bb4f5c-7d7f-447b-9a9d-1a584a3e5080",
+        "createdAt": "2026-04-20T17:09:01.023Z"
+      }
+    ]
+  },
+  {
+    "name": "Get My Properties",
+    "method": "GET",
+    "url": "http://localhost:3000/properties/my",
+    "requestBody": null,
+    "status": 404,
+    "duration": "7ms",
+    "response": {
+      "message": "Property not found"
+    }
+  },
+  {
+    "name": "Get Property Detail",
+    "method": "GET",
+    "url": "http://localhost:3000/properties/bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+    "status": 200,
+    "duration": "9ms",
+    "response": {
+      "id": "bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+      "title": "Full Test Villa",
+      "description": "Testing all endpoints",
+      "price": 9999,
+      "type": "Villa",
+      "area": 500,
+      "address": "Test St",
+      "lat": 10,
+      "lng": 106,
+      "status": "PENDING",
+      "rejectReason": null,
+      "expiredAt": null,
+      "userId": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+      "createdAt": "2026-04-20T17:11:12.763Z"
+    }
+  },
+  {
+    "name": "Update Property",
+    "method": "PUT",
+    "url": "http://localhost:3000/properties/bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+    "requestBody": {
+      "title": "Updated Villa Name"
+    },
+    "status": 200,
+    "duration": "8ms",
+    "response": {
+      "id": "bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+      "title": "Updated Villa Name",
+      "description": "Testing all endpoints",
+      "price": 9999,
+      "type": "Villa",
+      "area": 500,
+      "address": "Test St",
+      "lat": 10,
+      "lng": 106,
+      "status": "PENDING",
+      "rejectReason": null,
+      "expiredAt": null,
+      "userId": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+      "createdAt": "2026-04-20T17:11:12.763Z"
+    }
+  },
+  {
+    "name": "Nearby Search",
+    "method": "GET",
+    "url": "http://localhost:3000/properties/nearby?lat=10&lng=106&radius=5000",
+    "status": 200,
+    "duration": "7ms",
+    "response": [
+      {
+        "id": "6c24cdb0-568e-4bac-9af4-eab4833e53e2",
+        "title": "Admin Test Property",
+        "description": "Waiting for approval",
+        "price": 5000,
+        "type": "Villa",
+        "area": 200,
+        "address": "Ocean Road",
+        "lat": 10.5,
+        "lng": 107.1,
+        "status": "APPROVED",
+        "rejectReason": null,
+        "expiredAt": null,
+        "userId": "c9bb4f5c-7d7f-447b-9a9d-1a584a3e5080",
+        "createdAt": "2026-04-20T17:09:01.023Z"
+      }
+    ]
+  },
+  {
+    "name": "Login Admin",
+    "method": "POST",
+    "url": "http://localhost:3000/auth/login",
+    "requestBody": {
+      "email": "admin@example.com",
+      "password": "admin123"
+    },
+    "status": 200,
+    "duration": "69ms",
+    "response": {
+      "user": {
+        "id": "7aceef7e-d022-414d-b993-7569bcfdb673",
+        "email": "admin@example.com",
+        "password": "$2b$10$siNCvkgfAJGjnv2tHllZPexOTICvBi34GAdgjQmm6inJkz5NJ/dYy",
+        "role": "ADMIN"
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhY2VlZjdlLWQwMjItNDE0ZC1iOTkzLTc1NjliY2ZkYjY3MyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NjcwNTA3MiwiZXhwIjoxNzc3MzA5ODcyfQ.PWSz8wnpEoHv5tWAYEPUzrEmHXyXp2lrwp42yv6nRqc"
+    }
+  },
+  {
+    "name": "Admin List Properties",
+    "method": "GET",
+    "url": "http://localhost:3000/properties/admin/properties",
+    "requestBody": null,
+    "status": 200,
+    "duration": "4ms",
+    "response": [
+      {
+        "id": "94d78973-ad3f-45fa-b7a3-24568b247c43",
+        "title": "Test Property",
+        "description": "Test description",
+        "price": 1000,
+        "type": "House",
+        "area": 100,
+        "address": "Test Address",
+        "lat": 10,
+        "lng": 106,
+        "status": "PENDING",
+        "rejectReason": null,
+        "expiredAt": null,
+        "userId": "892cb059-4e56-4b6b-adbb-0fce8495cadd",
+        "createdAt": "2026-04-20T17:08:11.292Z"
+      },
+      {
+        "id": "6c24cdb0-568e-4bac-9af4-eab4833e53e2",
+        "title": "Admin Test Property",
+        "description": "Waiting for approval",
+        "price": 5000,
+        "type": "Villa",
+        "area": 200,
+        "address": "Ocean Road",
+        "lat": 10.5,
+        "lng": 107.1,
+        "status": "APPROVED",
+        "rejectReason": null,
+        "expiredAt": null,
+        "userId": "c9bb4f5c-7d7f-447b-9a9d-1a584a3e5080",
+        "createdAt": "2026-04-20T17:09:01.023Z"
+      },
+      {
+        "id": "42355e46-b49e-4ecc-ab95-efff1a4055dd",
+        "title": "Bad Property",
+        "description": "Will be rejected",
+        "price": 10,
+        "type": "Shack",
+        "area": 5,
+        "address": "Slums",
+        "lat": 10.1,
+        "lng": 106.1,
+        "status": "REJECTED",
+        "rejectReason": "Insufficient information and poor quality.",
+        "expiredAt": null,
+        "userId": "c9bb4f5c-7d7f-447b-9a9d-1a584a3e5080",
+        "createdAt": "2026-04-20T17:09:01.108Z"
+      },
+      {
+        "id": "bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+        "title": "Updated Villa Name",
+        "description": "Testing all endpoints",
+        "price": 9999,
+        "type": "Villa",
+        "area": 500,
+        "address": "Test St",
+        "lat": 10,
+        "lng": 106,
+        "status": "PENDING",
+        "rejectReason": null,
+        "expiredAt": null,
+        "userId": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+        "createdAt": "2026-04-20T17:11:12.763Z"
+      }
+    ]
+  },
+  {
+    "name": "Approve Property",
+    "method": "PUT",
+    "url": "http://localhost:3000/properties/bb3ff345-7739-475b-bb7e-8c6f58ed854d/approve",
+    "requestBody": null,
+    "status": 200,
+    "duration": "6ms",
+    "response": {
+      "id": "bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+      "title": "Updated Villa Name",
+      "description": "Testing all endpoints",
+      "price": 9999,
+      "type": "Villa",
+      "area": 500,
+      "address": "Test St",
+      "lat": 10,
+      "lng": 106,
+      "status": "APPROVED",
+      "rejectReason": null,
+      "expiredAt": null,
+      "userId": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+      "createdAt": "2026-04-20T17:11:12.763Z"
+    }
+  },
+  {
+    "name": "Reject Property",
+    "method": "PUT",
+    "url": "http://localhost:3000/properties/bb3ff345-7739-475b-bb7e-8c6f58ed854d/reject",
+    "requestBody": {
+      "rejectReason": "Test Reject"
+    },
+    "status": 200,
+    "duration": "5ms",
+    "response": {
+      "id": "bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+      "title": "Updated Villa Name",
+      "description": "Testing all endpoints",
+      "price": 9999,
+      "type": "Villa",
+      "area": 500,
+      "address": "Test St",
+      "lat": 10,
+      "lng": 106,
+      "status": "REJECTED",
+      "rejectReason": "Test Reject",
+      "expiredAt": null,
+      "userId": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+      "createdAt": "2026-04-20T17:11:12.763Z"
+    }
+  },
+  {
+    "name": "Add Favorite",
+    "method": "POST",
+    "url": "http://localhost:3000/favorites/bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+    "requestBody": null,
+    "status": 201,
+    "duration": "10ms",
+    "response": {
+      "id": "5f7ac6b0-bbf6-4b78-a6bc-43a7fae50b32",
+      "userId": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+      "propertyId": "bb3ff345-7739-475b-bb7e-8c6f58ed854d"
+    }
+  },
+  {
+    "name": "List Favorites",
+    "method": "GET",
+    "url": "http://localhost:3000/favorites",
+    "requestBody": null,
+    "status": 200,
+    "duration": "7ms",
+    "response": [
+      {
+        "id": "5f7ac6b0-bbf6-4b78-a6bc-43a7fae50b32",
+        "userId": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+        "propertyId": "bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+        "property": {
+          "id": "bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+          "title": "Updated Villa Name",
+          "description": "Testing all endpoints",
+          "price": 9999,
+          "type": "Villa",
+          "area": 500,
+          "address": "Test St",
+          "lat": 10,
+          "lng": 106,
+          "status": "REJECTED",
+          "rejectReason": "Test Reject",
+          "expiredAt": null,
+          "userId": "d2da481a-eddd-490b-9405-2c1aa71546f8",
+          "createdAt": "2026-04-20T17:11:12.763Z"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Remove Favorite",
+    "method": "DELETE",
+    "url": "http://localhost:3000/favorites/bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+    "requestBody": null,
+    "status": 200,
+    "duration": "5ms",
+    "response": {
+      "message": "Removed from favorites"
+    }
+  },
+  {
+    "name": "Delete Property",
+    "method": "DELETE",
+    "url": "http://localhost:3000/properties/bb3ff345-7739-475b-bb7e-8c6f58ed854d",
+    "requestBody": null,
+    "status": 200,
+    "duration": "6ms",
+    "response": {
+      "message": "Property deleted"
+    }
+  }
+]

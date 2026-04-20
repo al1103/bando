@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum PropertyStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id         String     @id @default(uuid())
+  email      String     @unique
+  password   String
+  role       Role       @default(USER)
+  properties Property[]
+  favorites  Favorite[]
+}
+
+model Property {
+  id           String         @id @default(uuid())
+  title        String
+  description  String
+  price        Float
+  type         String
+  area         Float
+  address      String
+  lat          Float
+  lng          Float
+  status       PropertyStatus @default(PENDING)
+  rejectReason String?
+  expiredAt    DateTime?
+  userId       String
+  user         User           @relation(fields: [userId], references: [id])
+  createdAt    DateTime       @default(now())
+  favorites    Favorite[]
+}
+
+model Favorite {
+  id         String   @id @default(uuid())
+  userId     String
+  propertyId String
+  user       User     @relation(fields: [userId], references: [id])
+  property   Property @relation(fields: [propertyId], references: [id])
+
+  @@unique([userId, propertyId])
+}
